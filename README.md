@@ -8,6 +8,7 @@ Tested on an Intel MacBook Pro (MacBookPro16,3, macOS 15.8) with Sony WH-1000XM6
 It relies on private, undocumented macOS interfaces; see [Caveats](#caveats).
 
 > ⚠️ AI Disclosure
+> 
 > This project was made entirely with Claude Opus 5.5 with pretty much zero manual
 > inspection for my own personal use. I do not guarantee that it will work on your
 > Mac or with your headphones, nor will I give you any kind of support. Take everything
