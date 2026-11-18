@@ -1,6 +1,6 @@
 # BTBridge
 
-Stream your Mac's audio to Bluetooth headphones over **LDAC**: a codec macOS doesn't
+Stream your Mac's audio to Bluetooth headphones over **[LDAC](https://en.wikipedia.org/wiki/LDAC_(codec))**: a codec macOS doesn't
 support. BTBridge is a small menu bar app; no kernel extension, no driver, System
 Integrity Protection stays on.
 
@@ -13,6 +13,27 @@ It relies on private, undocumented macOS interfaces; see [Caveats](#caveats).
 > inspection for my own personal use. I do not guarantee that it will work on your
 > Mac or with your headphones, nor will I give you any kind of support. Take everything
 > as-is.
+
+## LDAC vs. AAC on macOS
+
+LDAC is Sony's high-bitrate Bluetooth codec, open-sourced as part of Android (AOSP)
+since Android 8. macOS doesn't support it: with non-Apple headphones it streams AAC
+(or SBC as a fallback), using Apple's own AAC encoder.
+
+|                      | macOS AAC                                                               | LDAC via BTBridge                                              |
+| -------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Bitrate              | around 256 kbps                                                         | 330, 660 or 990 kbps                                           |
+| Sample rate          | 44.1 or 48 kHz; headphones not on Apple's 48 kHz allowlist get 44.1 kHz | 44.1, 48, 88.2 or 96 kHz                                       |
+| Lossless             | no                                                                      | no, not even at 990 kbps                                       |
+| Connection stability | very robust; macOS gives its own audio stream radio and Wi-Fi priority  | 990 kbps can drop out; BTBridge's stream gets no such priority |
+| macOS integration    | normal output device, volume keys, microphone                           | none while streaming (see Caveats)                             |
+
+In practice, Apple's AAC encoder is very good and close to transparent for most
+listeners and material. LDAC at 990 kbps carries roughly four times the data, and the
+difference is real but subtle: you're most likely to hear it with well-recorded music,
+good headphones and a quiet room. At 660 kbps the two are broadly comparable, and
+330 kbps is generally considered worse than good AAC, so use it only when stability
+matters more than quality.
 
 ## How it works
 
@@ -72,11 +93,11 @@ Other targets: `make tools`, `make test`, `make test-asan`, `make clean`.
 3. Click **Start LDAC**. The headphones drop out for 3–5 seconds and come back on LDAC.
 4. Click **Stop** (or quit) to hand them back to macOS.
 
-| Quality | Bitrate | |
-|---|---|---|
-| High | 990 kbps | best quality, most sensitive to interference |
-| Standard | 660 kbps | |
-| Connection-first | 330 kbps | most robust |
+| Quality          | Bitrate  |                                              |
+| ---------------- | -------- | -------------------------------------------- |
+| High             | 990 kbps | best quality, most sensitive to interference |
+| Standard         | 660 kbps |                                              |
+| Connection-first | 330 kbps | most robust                                  |
 
 96 kHz only helps with genuinely high-resolution sources and is best paired with High.
 While streaming, the Mac's speakers run at the chosen rate; they're restored afterwards.
