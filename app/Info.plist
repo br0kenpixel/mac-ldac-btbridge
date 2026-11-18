@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDisplayName</key>
+	<string>BTBridge</string>
+	<key>CFBundleExecutable</key>
+	<string>BTBridge</string>
+	<key>CFBundleIdentifier</key>
+	<string>local.btbridge</string>
+	<key>CFBundleName</key>
+	<string>BTBridge</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.2</string>
+	<key>LSUIElement</key>
+	<true/>
+	<key>NSAudioCaptureUsageDescription</key>
+	<string>BTBridge sends your Mac's audio to your headphones over LDAC. Nothing is recorded or saved.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>BTBridge connects to your paired headphones to stream audio.</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+</dict>
+</plist>
